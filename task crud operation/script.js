@@ -2,6 +2,8 @@
 const myForm = document.querySelector('#myForm');
 const userWrap = document.querySelector('#userWrap')
 const singleData = document.querySelector('#singleData')
+const editData = document.querySelector('#edit')
+const editBtn = document.querySelector('.editBtn')
 
 // read and write the data from local storage
 const writeDataToLocalStorage = (data, key = 'tasks') => localStorage.setItem(key, JSON.stringify(data));
@@ -17,12 +19,15 @@ function getUserData(user) {
     allUsers.push(user)
     writeDataToLocalStorage(allUsers, 'users')
 }
+
+
 // function of user json db
 const getUserObject = (myForm) => {
     const user = { id: Date.now() }
     heads.forEach(element => user[element] = myForm.elements[element].value);
     return user
 }
+
 
 // function to create multible elements 
 function createUserElements(el, parent, txt = null, classes = null) {
@@ -46,6 +51,7 @@ if (myForm) {
     })
 }
 
+
 drawData = () => {
     userWrap.innerHTML = ''
     const allUsers = readDataFromLocalStorage('users')
@@ -55,7 +61,8 @@ drawData = () => {
         createUserElements('td', tr, user.name)
         createUserElements('td', tr, user.phone)
         createUserElements('td', tr, user.age)
-        createUserElements('td', tr, user.status)
+        const status = createUserElements('td', tr, user.status)
+
         const td = createUserElements('td', tr)
         const showBtn = createUserElements('button', td, 'show', 'mx-3 btn btn-primary')
         const delBtn = createUserElements('button', td, 'delete', 'mx-3 btn btn-danger')
@@ -71,6 +78,20 @@ drawData = () => {
         showBtn.addEventListener('click', () => {
             localStorage.setItem("index", i)
             window.location = "single.html"
+        });
+        editBtn.addEventListener('click', (e) => {
+
+            e.preventDefault()
+            console.log('edit btn');
+            if ([user.status] == 'deactive') {
+                status.innerHTML = 'active'
+                status.style.color = 'blue'
+            } else if ([user.status] == 'active') {
+                status.innerHTML = 'deactive'
+                status.style.color = 'red'
+            } else {
+                status.innerHTML = 'not have status'
+            }
         })
     })
 }
@@ -80,9 +101,11 @@ if (userWrap) { drawData() }
 if (singleData) {
     const index = localStorage.getItem("index")
     const allUsers = readDataFromLocalStorage("users")
-    createUserElements("p", singleData, allUsers[index].name)
-    createUserElements("p", singleData, allUsers[index].phone)
-    createUserElements("p", singleData, allUsers[index].age)
-    createUserElements("p", singleData, allUsers[index].status)
-    createUserElements("p", singleData, allUsers[index].id)
+    createUserElements("p", singleData, allUsers[index].id, 'bg-body-tertiary')
+    createUserElements("p", singleData, allUsers[index].name, 'bg-body-tertiary')
+    createUserElements("p", singleData, allUsers[index].phone, 'bg-body-tertiary')
+    createUserElements("p", singleData, allUsers[index].age, 'bg-body-tertiary')
+    createUserElements("p", singleData, allUsers[index].status, 'bg-body-tertiary')
+
 }
+
