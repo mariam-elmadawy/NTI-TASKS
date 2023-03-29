@@ -16,6 +16,7 @@ const heads = ['name', 'phone', 'age', 'status']
 //read and write data and push the value inside the user
 function getUserData(user) {
     const allUsers = readDataFromLocalStorage('users')
+    console.log(allUsers);
     allUsers.push(user)
     writeDataToLocalStorage(allUsers, 'users')
 }
@@ -80,18 +81,26 @@ drawData = () => {
             window.location = "single.html"
         });
         editBtn.addEventListener('click', (e) => {
-
             e.preventDefault()
             console.log('edit btn');
-            if ([user.status] == 'deactive') {
-                status.innerHTML = 'active'
+            localStorage.setItem("edit", i)
+            const edit = localStorage.getItem("edit")
+            const st = readDataFromLocalStorage('users');
+            let state = st[edit].status
+            console.log(state);
+            if (state === 'deactive') {
+                status.textContent = 'active'
                 status.style.color = 'blue'
-            } else if ([user.status] == 'active') {
-                status.innerHTML = 'deactive'
+                st[edit].status = "active"
+            } else if (state === 'active') {
+                status.textContent = 'deactive'
                 status.style.color = 'red'
+                st[edit].status = "deactive"
             } else {
-                status.innerHTML = 'not have status'
+                status.style.color = 'green'
+                st[edit].status = "not have status"
             }
+            writeDataToLocalStorage(st, "users")
         })
     })
 }
@@ -108,4 +117,7 @@ if (singleData) {
     createUserElements("p", singleData, allUsers[index].status, 'bg-body-tertiary')
 
 }
+
+
+
 
