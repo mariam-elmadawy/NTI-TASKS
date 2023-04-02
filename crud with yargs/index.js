@@ -4,6 +4,7 @@ const user = require('./modules/user')
 yargs.command({
     command: 'addUser',
     builder: {
+        id: { demandOption: true },
         name: { demandOption: true },
         email: { demandOption: true },
         age: { demandOption: true },

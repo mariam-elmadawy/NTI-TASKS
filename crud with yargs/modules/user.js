@@ -5,8 +5,8 @@ const rwData = require('./jsonData')
 const createUserObjectData = (data) => {
     const user = {}
     userData.forEach(h => {
-        if (h == "id") user[h] = Date.now()
-        else user[h] = data[h]
+        user[h] = data[h]
+
     });
     return user
 }
@@ -16,22 +16,22 @@ class user {
         const data = rwData.readJsonData('users.json')
         data.push(userRecord)
         rwData.writeJsonData('users.json', data)
-
     }
+
     static showOneUser = (argv) => {
         const data = rwData.readJsonData('users.json')
         const singleUser = data.find(u => u.id == argv.id)
         if (!singleUser) console.log("doesn't exist")
         else console.log(singleUser)
-
     }
+
     static showAllUsers = () => {
         const data = rwData.readJsonData("users.json")
         data.forEach((user, i) => {
             console.log(`index:${i + 1} - name:${user.name} - user id:${user.id} - email:${user.email}`)
         })
-
     }
+
     static deleteOneUser = (argv) => {
         const data = rwData.readJsonData('users.json')
         data.forEach((e, i) => {
@@ -41,12 +41,14 @@ class user {
             }
         })
     }
+
     static deleteAllUsers = (argv) => {
-        const userRecord = createUserObjectData(argv)
-        const data = rwData.readJsonData('users.json')
-        data.splice(userRecord)
-        rwData.writeJsonData('users.json', data)
+        // const userRecord = createUserObjectData(argv)
+        // const data = rwData.readJsonData('users.json')
+        // data.splice(userRecord)
+        rwData.writeJsonData('users.json', [])
     }
+
     static editUser = (argv) => {
         const userRecord = createUserObjectData(argv)
         const data = rwData.readJsonData('users.json')
@@ -57,7 +59,7 @@ class user {
             };
         })
         rwData.writeJsonData('users.json', data)
-
     }
 }
+
 module.exports = user;
