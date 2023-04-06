@@ -1,0 +1,24 @@
+{{>header}}
+{{>nav}}
+<Section class="container m-4">
+ <form action="/addTodo" method="GET">
+    <div class="mb-3">
+        <input type="text" name="title" class="form-control" placeholder="title">
+    </div>
+     <div class="mb-3">
+        <input type="text" name="content" class="form-control" placeholder="content">
+    </div>
+     <div class="mb-3"></div>
+         <div class="mb-3">        
+        <select name="status" class="form-select">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+    </div>
+    </div>
+     <div class="mb-3">
+ <button class="btn btn-primary">Add Todo</button>
+ </div>
+ </form>
+</Section>
+{{>footer}}
