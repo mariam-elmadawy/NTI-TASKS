@@ -85,7 +85,7 @@ class userController {
         let search = req.query.search;
         let results = [];
         try {
-            const data = await appModel.find({ $or: [{ title: new RegExp(search) }, { content: new RegExp(search)}] }).exec();
+            const data = await appModel.find({ $or: [{ title: {$regex:search} }, { content: {$regex:search} }] });
             data.forEach(element => {
                 results.push(element);
             });
