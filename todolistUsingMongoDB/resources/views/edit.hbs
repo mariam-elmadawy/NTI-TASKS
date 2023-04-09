@@ -1,0 +1,25 @@
+{{>header}}
+{{>nav}}
+<Section class="container m-4">
+    <h2>Edit Todo list</h2>
+ <form action="/editTodo/{{data._id}}">
+    <div class="mb-3">
+        <input type="text" name="title" class="form-control" placeholder="{{data.title}}" value="{{data.title}}">
+    </div>
+     <div class="mb-3">
+        <input type="text" name="content" class="form-control" placeholder="{{data.content}}" value="{{data.content}}">
+    </div>
+     <div class="mb-3">        
+        <select name="status" class="form-select">
+            <option value="{{data.status}}" selected disabled>{{data.status}}</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+    </div>
+   
+     <div class="mb-3">
+ <button class="btn btn-primary">Edit Todo</button>
+ </div>
+ </form>
+</Section>
+{{>footer}}

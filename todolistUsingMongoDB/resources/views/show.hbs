@@ -1,0 +1,19 @@
+{{>header}}
+{{>nav}}
+
+<section class="container m-4 mx-auto">
+    {{#if data}}
+    <div class="text-center card card-dark p-3">
+        <p>id: {{data._id}}</p>
+        <h2>title: {{data.title}}</h2>
+        <h3>content: {{data.content}}</h3>
+        <h4>status: {{data.status}}</h4>
+        <p>due date: {{data._date}}</p>
+    </div>
+</section>
+{{else}}
+<div class="alert alert-danger">
+    no founded data
+   </div>
+   {{/if}}
+{{>footer}}
