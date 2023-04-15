@@ -1,5 +1,5 @@
 const handler = require("../helper")
-const vendorModel = require("../../database/models/vendorModel")
+const vendorModel = require("../../database/models/vendorsModel")
 class Vendor {
     static register = async (req, res) => {
         try {
