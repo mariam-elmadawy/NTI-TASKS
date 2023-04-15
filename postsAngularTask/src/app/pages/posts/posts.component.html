@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="row p-3 mt-2">
+      <input
+        type="text"
+        placeholder="search."
+        class="form-control text-center"
+        [(ngModel)]="value"
+      />
+      <button class="form-control btn btn-danger" (click)="filterPosts()">
+        search
+      </button>
+    </div>
+    <div
+      class="card p-3 m-2 mx-auto text-center"
+      style="width: 18rem"
+      *ngFor="let post of postsArray"
+    >
+      <div class="card-body col-12">
+        <h5 class="card-title">id: {{ post.id }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          title: {{ post.title }}
+        </h6>
+        <p class="card-text">
+          {{ post.body }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
