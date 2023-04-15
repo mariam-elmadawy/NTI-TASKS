@@ -12,7 +12,7 @@ class Vendor {
     }
     static login = async (req, res) => {
         try {
-            const vendorData = await vendorModel.loginUser(req.body.email, req.body.password)
+            const vendorData = await vendorModel.loginVendor(req.body.email, req.body.password)
             const token = await vendorData.generateToken()
             handler.responseHandler(res, 200, true, { vendorData, token }, "vendor login successfully")
         } catch (e) {

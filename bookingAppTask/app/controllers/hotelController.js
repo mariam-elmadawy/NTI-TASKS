@@ -1,6 +1,6 @@
 const handler = require("../helper")
 const hotelModel = require("../../database/models/hotelModel");
-const Handler = require("../helper");
+
 class Hotel {
     static newHotel = async (req, res) => {
         try {
@@ -32,7 +32,7 @@ class Hotel {
             for (let el in req.body) {
                 hotels[el] = req.body[el]
                 await hotels.save()
-                Handler.responseHandler(res, 200, true, hotels, "hotel edited successfully")
+                handler.responseHandler(res, 200, true, hotels, "hotel edited successfully")
             }
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
     };

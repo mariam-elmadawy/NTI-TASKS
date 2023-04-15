@@ -5,8 +5,8 @@ const vendorAuth = require("../app/middleware/vendorMiddleware")
 router.post("/", vendorAuth, hotelController.newHotel)
 router.get("/myHotels", vendorAuth, hotelController.myHotels)
 //show single and all hotels
-router.get("/showAll", vendorAuth, hotelController.viewAllHotels)
-router.get("/show/:id", hotelController.viewOneHotel)
+router.get("/showAll", hotelController.viewAllHotels)
+router.get("/show/:id", vendorAuth, hotelController.viewOneHotel)
 //update single hotel
 router.patch("/show/:id", hotelController.updateHotel)
 //delete one and all hotels

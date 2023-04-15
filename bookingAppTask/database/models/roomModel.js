@@ -1,5 +1,10 @@
 const mongoose = require("mongoose")
 const roomSchema = mongoose.Schema({
+    hotelId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Hotels"
+    },
     roomnumber: {
         type: String,
         trim: true,
@@ -24,6 +29,9 @@ const roomSchema = mongoose.Schema({
         max: 1000000
     }
 })
-//connect by plans and hotel using vendor name or id 
+roomSchema.pre("findByIdAndDelete", async function () {
+    await roomModel.remove({ hotelId: this._id })
+})
+//connect by hotel using vendor id 
 const roomModel = mongoose.model("Rooms", roomSchema)
 module.exports = roomModel
