@@ -1,5 +1,10 @@
 const mongoose = require("mongoose")
 const hotelSchema = mongoose.Schema({
+    vendorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Vendors"
+    },
     hotelname: {
         type: String,
         trim: true,
@@ -32,6 +37,10 @@ const hotelSchema = mongoose.Schema({
         min: 0,
         max: 10
     }
+})
+
+hotelSchema.pre("findByIdAndDelete", async function () {
+    await hotelModel.remove({ vendorId: this._id })
 })
 //connect by vendor using vemdors id
 const hotelModel = mongoose.model("Hotels", hotelSchema)

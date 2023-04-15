@@ -4,7 +4,10 @@ const Handler = require("../helper");
 class Hotel {
     static newHotel = async (req, res) => {
         try {
-            const newHotel = await new hotelModel(req.body)
+            const newHotel = await new hotelModel({
+                vendorId: req.vendor._id,
+                ...req.body
+            })
             await newHotel.save()
             handler.responseHandler(res, 200, true, newHotel, "hotel added successfully")
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
@@ -45,6 +48,14 @@ class Hotel {
             handler.responseHandler(res, 200, true, [], "deleted all hotels")
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
     };
+    static myHotels = async (req, res) => {
+        try {
+            await req.vendor.populate("myHotels")
+            handler.responseHandler(res, 200, true, req.vendor.myHotels, "show single hotel")
+        } catch (e) {
+            handler.responseHandler(res, 500, false, e.message, "error fetched")
+        }
+    }
 
 }
 module.exports = Hotel
