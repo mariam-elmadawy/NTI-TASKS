@@ -1,0 +1,39 @@
+<!-- <div class="container">
+  <div *ngIf="change; else data">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium,
+    officia!
+  </div>
+  <ng-template #data>
+    <div>another</div>
+  </ng-template>
+  <button class="btn btn-primary" (click)="change = true">change div</button>
+  <button class="btn btn-primary" (click)="change = !change">change div</button>
+
+  <div class="alert alert-primary" *ngIf="arr.length > 1; else secCondistion">
+    true
+  </div>
+  <ng-template #secCondistion>
+    <div class="alert alert-danger">false</div>
+  </ng-template>
+</div> -->
+
+<div class="container">
+  <div [ngSwitch]="num">
+    <ng-container *ngFor="let i of numArr">
+      <div *ngSwitchCase="i">number {{ i }}</div>
+    </ng-container>
+    <!-- <div *ngSwitchCase="'2'">number 2</div>
+    <div *ngSwitchCase="'3'">number 3</div>
+    <div *ngSwitchCase="'4'">number 4</div> -->
+    <div *ngSwitchDefault>invalid number</div>
+  </div>
+</div>
+<!-- month task -->
+<div class="container">
+  <div [ngSwitch]="month">
+    <ng-container *ngFor="let i of monthArr; let in = index">
+      <div *ngSwitchCase="in">month is {{ i }}</div>
+    </ng-container>
+    <div *ngSwitchDefault>invalid number</div>
+  </div>
+</div>

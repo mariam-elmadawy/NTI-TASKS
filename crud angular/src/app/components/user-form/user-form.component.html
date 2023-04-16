@@ -1,0 +1,25 @@
+<form>
+  <div class="row my-4 gy-4">
+    <div class="col-12 col-md-6">
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        [(ngModel)]="userData.username"
+        class="form-control"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        [(ngModel)]="userData.email"
+        class="form-control"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <button class="btn btn-success" (click)="handlerClick()">add user</button>
+    </div>
+  </div>
+</form>
