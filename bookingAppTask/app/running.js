@@ -17,6 +17,8 @@ const hotelRoutes = require("../routes/hotelRoutes")
 app.use("/api/hotel/", hotelRoutes)
 const vendorRoutes = require("../routes/vendorRoutes")
 app.use("/api/vendor/", vendorRoutes)
+const roomRoutes = require("../routes/roomRoutes")
+app.use("/api/room/", roomRoutes)
 app.all("*", (req, res) =>
     Handler.responseHandler(res, 404, false, null, 'url not found')
 )

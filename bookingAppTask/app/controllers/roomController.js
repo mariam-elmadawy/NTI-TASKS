@@ -3,10 +3,7 @@ const roomModel = require("../../database/models/roomModel")
 class Room {
     static newRoom = async (req, res) => {
         try {
-            const newRoom = await new roomModel({
-                vendorId: req.vendor._id,
-                ...req.body
-            })
+            const newRoom = await new roomModel(req.body )
             await newRoom.save()
             handler.responseHandler(res, 200, true, newRoom, "room added successfully")
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
@@ -47,14 +44,5 @@ class Room {
             handler.responseHandler(res, 200, true, [], "deleted all rooms")
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
     };
-    static myRooms = async (req, res) => {
-        try {
-            await req.vendor.populate("myRooms")
-            handler.responseHandler(res, 200, true, req.vendor.myRooms, "show single room")
-        } catch (e) {
-            handler.responseHandler(res, 500, false, e.message, "error fetched")
-        }
-    }
-
 }
 module.exports = Room

@@ -29,9 +29,7 @@ const roomSchema = mongoose.Schema({
         max: 1000000
     }
 })
-roomSchema.pre("findByIdAndDelete", async function () {
-    await roomModel.remove({ hotelId: this._id })
-})
+
 //connect by hotel using vendor id 
 const roomModel = mongoose.model("Rooms", roomSchema)
 module.exports = roomModel

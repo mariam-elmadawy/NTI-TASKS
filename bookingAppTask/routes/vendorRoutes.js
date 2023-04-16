@@ -6,6 +6,7 @@ router.post("/login", vendorController.login)
 router.post("/logout", vendorAuth, vendorController.logout)
 //view
 router.get('/show/:id', vendorController.view)
+router.get('/showAll', vendorController.viewAll)
 //update 
 router.patch('/show/:id', vendorController.update)
 //delete one 

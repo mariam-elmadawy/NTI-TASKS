@@ -35,6 +35,13 @@ class Vendor {
 
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
     };
+    static viewAll = async (req, res) => {
+        try {
+            const vendors = await vendorModel.find();
+            handler.responseHandler(res, 200, true, vendors, "vendors fetched successfully")
+
+        } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
+    };
     static update = async (req, res) => {
         try {
             const vendors = await vendorModel.findById(req.params.id)
