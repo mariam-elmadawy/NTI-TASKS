@@ -30,6 +30,5 @@ const roomSchema = mongoose.Schema({
     }
 })
 
-//connect by hotel using vendor id 
 const roomModel = mongoose.model("Rooms", roomSchema)
 module.exports = roomModel
