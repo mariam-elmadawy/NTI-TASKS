@@ -58,6 +58,16 @@ class Vendor {
             handler.responseHandler(res, 200, true, vendors, "deleted one vendor")
         } catch (e) { handler.responseHandler(res, 500, false, e.message, "error") }
     };
+    static updatePimg = async (req, res) => {
+        try {
+            const ext = Helper.resFile(req)
+            req.user.image = `${process.env.APPURL}${req.file.filename}.${ext}`
+            await req.user.save()
+            handler.responseHandler(res, 200, true, req.user, "updated done")
+        } catch (e) {
+            handler.responseHandler(res, 500, false, e.message, "error fetched")
+        }
+    }
 
 
 }

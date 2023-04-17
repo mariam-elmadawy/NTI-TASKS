@@ -27,6 +27,9 @@ const roomSchema = mongoose.Schema({
         required: true,
         min: 0,
         max: 1000000
+    },
+    images: {
+        type: String
     }
 })
 

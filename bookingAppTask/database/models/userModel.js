@@ -61,6 +61,13 @@ userSchema.pre("save", async function () {
     if (this.isModified("password"))
         this.password = await bcrypt.hash(this.password, 15)
 })
+userSchema.methods.toJSON = function () {
+    const data = this.toObject()
+    delete data.__v
+    delete data.password
+    delete data.tokens
+    return data
+}
 // login
 userSchema.statics.loginUser = async (email, password) => {
     const userData = await userModel.findOne({ email })

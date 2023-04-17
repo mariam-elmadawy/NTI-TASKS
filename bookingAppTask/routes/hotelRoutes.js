@@ -6,7 +6,7 @@ router.post("/", vendorAuth, hotelController.newHotel)
 router.get("/myHotels", vendorAuth, hotelController.myHotels)
 //show single and all hotels
 router.get("/showAll", hotelController.viewAllHotels)
-router.get("/show/:id", vendorAuth, hotelController.viewOneHotel)
+router.get("/show/:id", hotelController.viewOneHotel)
 //update single hotel
 router.patch("/show/:id", hotelController.updateHotel)
 //delete one and all hotels

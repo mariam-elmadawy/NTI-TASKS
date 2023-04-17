@@ -2,6 +2,7 @@
 const express = require("express")
 const Handler = require("./helper")
 const cors = require("cors")
+const path = require("path")
 //GET INSTANCE FROM EXPRESS
 const app = express()
 //CONNECT INTO THE SERVER DB
@@ -10,6 +11,7 @@ require("../database/serverDB")
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
+app.use(express.static(path.join(__dirname, "../resources/public")))
 // app routes
 const adminRoutes = require("../routes/adminRoutes")
 app.use("/api/admin/", adminRoutes)
